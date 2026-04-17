@@ -26,11 +26,11 @@ You can still click on individual files and download them. 0B is misleading.)
 │   ├── textLABELS.pkl # text labels for general corpus data.
 │   ├── HuBERTLABELS.pkl # HuBERT units from Google TTS audio of text labels (not synced to EMG).
 |   ├── groundTruthAudioFiles.pkl # Ground truth subject recorded audio.
-|   ├── synthesizedAudios # synthesized audio from EMG (all 400 sentences in the test set).
-└── ALS_Data
+|   ├── synthesizedAudios/ # synthesized audio from EMG (all 400 sentences in the test set).
+└── ALS_Data/
 ``` ├── DATA.pkl # EMG data from an ALS subject.
     ├── textLABELS.pkl # text labels for ALS corpus data.
     ├── HuBERTLABELS.pkl # HuBERT units from Google TTS audio of text labels (not synced to EMG).
     ├── dataSplit.npy # We randomly generated 60 indices to be used as test set.
-    ├── synthesizedAudios # synthesized audio from EMG (all 60 sentences in the test set).
+    ├── synthesizedAudios/ # synthesized audio from EMG (all 60 sentences in the test set).
     
