@@ -1,5 +1,17 @@
 # `emg2speech`
 
+If you use this dataset, code, or audio samples, please cite:
+
+```bibtex
+@inproceedings{emg2speech2026,
+  title     = {emg2speech: synthesizing speech from electromyography using self-supervised speech models},
+  author    = {Gowda, Harshavardhan T. and others},
+  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers).},
+  year      = {2026}
+}
+
+Please see the notebooks for deails about model training. Download all data from the link below. 
+
 ```text
 We present a neuromuscular speech interface that translates electromyographic (EMG) 
 signals recorded from orofacial muscles during speech articulation directly into audio. 
@@ -21,6 +33,7 @@ are hosted externally.
 You can still click on individual files and download them. 0B is misleading.)
 
 2. 
+└── tokens.txt # phoneme mapping.
 ├── GeneralCorpusData/
 │   ├── DATA.pkl # General corpus EMG data from a healthy subject.
 │   ├── textLABELS.pkl # text labels for general corpus data.
@@ -32,5 +45,4 @@ You can still click on individual files and download them. 0B is misleading.)
     ├── textLABELS.pkl # text labels for ALS corpus data.
     ├── HuBERTLABELS.pkl # HuBERT units from Google TTS audio of text labels (not synced to EMG).
     ├── dataSplit.npy # We randomly generated 60 indices to be used as test set.
-    ├── synthesizedAudios/ # synthesized audio from EMG (all 60 sentences in the test set).
-    
+    ├── synthesizedAudios/ # synthesized audio from EMG (all 60 sentences in the test set).   
