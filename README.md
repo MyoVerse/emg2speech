@@ -15,17 +15,7 @@ Please see the notebooks for deails about model training. Download all data from
 
 
 We present a neuromuscular speech interface that translates electromyographic (EMG) 
-signals recorded from orofacial muscles during speech articulation directly into audio. 
-We find that self-supervised speech representations (SS) are strongly linearly related 
-to the electrical power of muscle activity: a simple linear mapping predicts EMG power 
-from SS with a correlation of *r = 0.85*. In addition, EMG power vectors associated with 
-distinct articulatory gestures form structured, separable clusters. Together, these 
-observations suggest that SS implicitly encode articulatory mechanisms, as reflected 
-in EMG activity. Leveraging this structure, we map EMG signals into the SS space and 
-synthesize speech, enabling end-to-end EMG-to-speech generation without explicit 
-articulatory modeling or vocoder training. We demonstrate this system with a participant 
-with amyotrophic lateral sclerosis (ALS), converting orofacial EMG recorded while 
-she *silently* articulated speech into audio.
+signals recorded from orofacial muscles during speech articulation directly into audio. We find that self-supervised speech (S3) representations are strongly linearly related to the electrical power of muscle activity: a simple linear mapping predicts EMG power from S3 representations with a correlation of *r = 0.85*. In addition, EMG power vectors associated with distinct articulatory gestures form structured, separable clusters. Together, these observations suggest that SS implicitly encode articulatory mechanisms, as reflected in EMG activity. Leveraging this structure, we map EMG signals into the SS space and synthesize speech, enabling end-to-end EMG-to-speech generation without explicit articulatory modeling or vocoder training. We demonstrate this system with a participant with amyotrophic lateral sclerosis (ALS), converting orofacial EMG recorded while she *silently* articulated speech into audio.
 
 ```text
 1. Download the data from: https://osf.io/65vbx/ (under Files/Box).
