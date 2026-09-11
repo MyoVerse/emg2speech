@@ -1,21 +1,6 @@
 """
 Ablation: GENERAL-VOCAB EMG-to-audio conversion from EMG POWER, D(E).
 
-Port of /mnt/dataDrive/emg2Audio/codes7/book1Diag.ipynb (with convModule1.py from
-that directory) onto this repository's data split: contiguous 8500 / 760 / 400
-train / val / test, as in speechLargeVocab.ipynb, rather than the testIndices.npy
-split used there. Labels come from HuBERTLABELS.pkl.
-
-As in book1Diag.ipynb the model is single-head with one loss:
-    - input is the covariance diagonal, so D(E) is 31 per frame,
-    - encoder -> Linear(384, 101) directly, with no output-side block,
-    - the only objective is the HuBERT-unit CTC loss.
-
-The covariance sequence comes from this repository's emgJitter.computeConvSeq with
-diagOnly = True, which is identical to the codes7 version. book1Diag.ipynb passes
-eigenVectors.npy but also diag = False, which makes the rotation a no-op, so the
-eigenvectors are dropped here.
-
 This is the D(E) row of table 1 in the paper.
 
 Run:

@@ -1,16 +1,6 @@
 """
 Ablation: GENERAL-VOCAB EMG-to-audio conversion from EMG SPECTROGRAMS, vec(B).
 
-Port of /mnt/dataDrive/emg2Audio/codes7/book1Spec.ipynb (with emgJitterSpec.py and
-convModule.TDSConvCTCModule from that directory) onto this repository's data split:
-contiguous 8500 / 760 / 400 train / val / test, as in speechLargeVocab.ipynb, rather
-than the testIndices.npy split used there. Labels come from HuBERTLABELS.pkl.
-
-As in book1Spec.ipynb the model is single-head with one loss:
-    - input is the 31-band log-power spectrogram, so vec(B) is 31 x 31 = 961,
-    - encoder -> Linear(384, 101) directly, with no output-side block,
-    - the only objective is the HuBERT-unit CTC loss.
-
 This is the vec(B) row of table 1 in the paper.
 
 Run:
