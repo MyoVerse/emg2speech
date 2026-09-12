@@ -1,16 +1,6 @@
 """
 Ablation: GENERAL-VOCAB EMG-to-audio conversion with a UNIT HEAD ONLY.
 
-This is the script equivalent of speechLargeVocab.ipynb with the phone branch
-removed entirely:
-    - the phone linear layer is gone from the model (unit head only),
-    - the phone CTC loss is gone,
-    - the phone/unit consistency loss is gone (it needs both heads),
-    - nothing is phonemized: no g2p, no phone token table, no phone targets,
-    - the output-side block (LayerNorm -> GELU -> Linear -> GELU -> Dropout) is
-      gone: the unit head reads the encoder output directly, so there is no
-      dropout anywhere in the network.
-
 The single training objective is the HuBERT-unit CTC loss.
 
 For description of the data, please see largeVocabDataVisualization.ipynb.
@@ -74,6 +64,8 @@ numberEpochs = 50
 warmup = 5
 
 dev = "cuda:0"
+
+trainJitter = False
 
 """
 Set > 0 to vocode that many of the best-decoded test utterances to wav
@@ -296,7 +288,7 @@ def _concatTargets(padded: torch.Tensor, lengths: torch.Tensor) -> torch.Tensor:
                      dim = 0).to(dtype = torch.long, copy = False)
 
 
-def trainOperation(model, device, trainLoader, optimizer, ctcUnit, maxGradNorm = 1.0):
+def trainOperation(model, device, trainLoader, optimizer, ctcUnit):
     model.train()
     total = 0.0
 
@@ -315,7 +307,6 @@ def trainOperation(model, device, trainLoader, optimizer, ctcUnit, maxGradNorm =
 
         loss = ctcUnit(logpU, unitTargets1d, inLens, unitLens)
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(model.parameters(), maxGradNorm)
         optimizer.step()
 
         total += float(loss.item())
@@ -527,7 +518,7 @@ def main():
         emgTrain, huTrain, huLTrain,
         fs = fs, winMs = winMs, hopMs = hopMs,
         shrinkAlpha = shrinkAlpha, diag = DIAG, diagOnly = diagOnly,
-        jitter = True,
+        jitter = trainJitter,
     )
     valDS = UnitJitterEMGDataset(
         emgVal, huVal, huLVal,

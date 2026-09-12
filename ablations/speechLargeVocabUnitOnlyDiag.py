@@ -68,6 +68,8 @@ warmup = 5
 
 dev = "cuda:0"
 
+trainJitter = False
+
 
 class DiagJitterEMGDataset(Dataset):
     """
@@ -315,7 +317,7 @@ def main():
     huLTrain, huLVal, huLTest = unitLabelLengths[:trainEnd], unitLabelLengths[trainEnd:valEnd], unitLabelLengths[valEnd:]
 
     dsArgs = dict(fs = fs, winMs = winMs, hopMs = hopMs, shrinkAlpha = shrinkAlpha)
-    trainDS = DiagJitterEMGDataset(emgTrain, huTrain, huLTrain, jitter = True,  **dsArgs)
+    trainDS = DiagJitterEMGDataset(emgTrain, huTrain, huLTrain, jitter = trainJitter, **dsArgs)
     valDS   = DiagJitterEMGDataset(emgVal,   huVal,   huLVal,   jitter = False, **dsArgs)
     testDS  = DiagJitterEMGDataset(emgTest,  huTest,  huLTest,  jitter = False, **dsArgs)
 

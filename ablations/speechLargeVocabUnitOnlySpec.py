@@ -67,11 +67,6 @@ numWorkers = 4
 numberEpochs = 50
 warmup = 5
 
-"""
-book1Spec.ipynb builds its training set with jitter = False (unlike book1Diag.ipynb
-and speechLargeVocab.ipynb, which jitter). That is reproduced here; set to True to
-match the other runs.
-"""
 trainJitter = False
 
 dev = "cuda:0"
